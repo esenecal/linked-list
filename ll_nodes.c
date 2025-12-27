@@ -1,7 +1,13 @@
 #include "ll_nodes.h"
 #include <stdio.h>
 
-/** Prints out the value and memory address of an int variable, from it's pointer. */
-void print_int(int *ptr) {
-    printf("Address: %p Value: %d\n", ptr, *ptr);
+/** A node in the linked list. Contains a value (int) and a pointer to the next int */
+typedef struct {
+    int value;  // Value of the node
+    Node *ptr;  // Pointer to next node.
+} Node;
+
+// Create a pointer.
+void create_pointer() {
+    
 }

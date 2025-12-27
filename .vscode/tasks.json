@@ -9,7 +9,7 @@
                 "-g",
                 "${workspaceFolder}/*.c",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}\\main.exe"
             ],
             "options": {
                 "cwd": "C:/msys64/ucrt64/bin"
