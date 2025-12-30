@@ -5,7 +5,8 @@
 int main() {
     
     // Create the linked list as the head pointer.
-    Node* linked_list_head = create_linked_list(2);
-    print_list(linked_list_head);
+    Node* head_ptr = create_linked_list(2);
+    ll_append(head_ptr, 20);
+    print_list(head_ptr);
     return 0;
 }

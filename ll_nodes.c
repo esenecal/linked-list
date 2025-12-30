@@ -57,6 +57,7 @@ void print_list(Node* head_ptr) {   // Print the linked list.
     Node *iter = head_ptr;  // Create a pointer pointing to the head pointer.
     while (iter->ptr != NULL) {     // Iterate up to the tail
         printf("%d -> ", iter->value);
+        iter = iter->ptr;           // Move to the next node.
     }
     // print the tail.
     printf("%d -> NULL\n", iter->value);
