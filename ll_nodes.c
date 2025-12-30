@@ -53,3 +53,11 @@ void ll_append(Node* head_ptr, int value) {     // Append to the end of the list
     printf("address: %p value: %d ptr %p tail: %p\n",  node, node->value, node->ptr, node->tail);   // Debugging
 }
 
+void print_list(Node* head_ptr) {   // Print the linked list.
+    Node *iter = head_ptr;  // Create a pointer pointing to the head pointer.
+    while (iter->ptr != NULL) {     // Iterate up to the tail
+        printf("%d -> ", iter->value);
+    }
+    // print the tail.
+    printf("%d -> NULL", iter->value);
+}
