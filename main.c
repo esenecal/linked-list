@@ -4,8 +4,8 @@
 
 int main() {
     
-    // Create the linked list.
-    Node* linked_list = create_linked_list(2);
+    // Create the linked list as the head pointer.
+    Node* linked_list_head = create_linked_list(2);
 
     return 0;
 }

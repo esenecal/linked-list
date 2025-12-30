@@ -7,4 +7,6 @@ typedef struct Node {
 } Node;
 
 Node* create_linked_list(int);
+
+void ll_append(Node*, int);
 #endif
