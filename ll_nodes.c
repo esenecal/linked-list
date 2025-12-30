@@ -28,7 +28,7 @@ Node* create_linked_list(int value) {
     node->ptr = NULL;
     node->tail = node;
     
-    printf("address: %p value: %d ptr %p tail: %p\n",  node, node->value, node->ptr, node->tail);   // Debugging
+    printf("address: %p ptr: %p tail: %p value: %d\n",  node, node->ptr, node->tail, node->value);   // Debugging
     return node;
 }
 
@@ -50,29 +50,28 @@ void ll_append(Node* head_ptr, int value) {     // Append to the end of the list
     head_ptr->tail->ptr = node;     // Point the (former) tail's ptr to the new node.
     head_ptr->tail = node;          // Point the tail ptr to the node.
 
-    printf("address: %p value: %d ptr %p tail: %p\n",  node, node->value, node->ptr, node->tail);   // Debugging
+    printf("address: %p ptr: %p tail: %p value: %d\n",  node, node->ptr, node->tail, node->value);   // Debugging
 }
 
 void ll_append_beginning(Node* head_ptr, int value) {       // Append at the beginning of the list.
     
-    Node *head_replace; // This will be the REPLACEMENT for the past head node.
-    head_replace = malloc(sizeof(*head_replace));   // Allocate to dynamic memory.
+    Node *node;
+    node = malloc(sizeof(*node));   // Allocate to dynamic memory.
     
     // Test to ensure allocation was successful.
-    if (head_replace == NULL) {
+    if (node == NULL) {
         printf("Memory allocation unsuccessful.\n");
         return;
     }
 
-    // There must be an easier way to do this.
-    *head_replace = *head_ptr;  // Move over the head node to it's new home.
-    head_replace->tail = NULL;  // This now has no need to know the tail.
+    node->value = value;
+    node->ptr = head_ptr;   // replaces the head_ptr
+    node->tail = head_ptr->tail;
+    head_ptr->tail = NULL;  // The current head_ptr no longer needs a tail.
 
-    // Begin replacing pointer info.
-    head_ptr->value = value;
-    head_ptr->ptr = head_replace;
+    head_ptr = node;    // point the head_ptr to the new node.
 
-    printf("address: %p value: %d ptr %p tail: %p\n",  head_ptr, head_ptr->value, head_ptr->ptr, head_ptr->tail);   // Debugging
+    printf("address: %p ptr: %p tail: %p value: %d\n",  node, node->ptr, node->tail, node->value);   // Debugging
 }
 
 void print_list(Node* head_ptr) {   // Print the linked list.
