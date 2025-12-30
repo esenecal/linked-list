@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Used https://www.w3schools.com/dsa/dsa_theory_linkedlists_memory.php as a help occasionally.
+// Used https://www.w3schools.com/dsa/dsa_theory_linkedlists_memory.php as a help, but not much.
 
 /** A node in the linked list. Contains a value (int) and a pointer to the next int */
 typedef struct Node {
@@ -51,6 +51,28 @@ void ll_append(Node* head_ptr, int value) {     // Append to the end of the list
     head_ptr->tail = node;          // Point the tail ptr to the node.
 
     printf("address: %p value: %d ptr %p tail: %p\n",  node, node->value, node->ptr, node->tail);   // Debugging
+}
+
+void ll_append_beginning(Node* head_ptr, int value) {       // Append at the beginning of the list.
+    
+    Node *head_replace; // This will be the REPLACEMENT for the past head node.
+    head_replace = malloc(sizeof(*head_replace));   // Allocate to dynamic memory.
+    
+    // Test to ensure allocation was successful.
+    if (head_replace == NULL) {
+        printf("Memory allocation unsuccessful.\n");
+        return;
+    }
+
+    // There must be an easier way to do this.
+    *head_replace = *head_ptr;  // Move over the head node to it's new home.
+    head_replace->tail = NULL;  // This now has no need to know the tail.
+
+    // Begin replacing pointer info.
+    head_ptr->value = value;
+    head_ptr->ptr = head_replace;
+
+    printf("address: %p value: %d ptr %p tail: %p\n",  head_ptr, head_ptr->value, head_ptr->ptr, head_ptr->tail);   // Debugging
 }
 
 void print_list(Node* head_ptr) {   // Print the linked list.

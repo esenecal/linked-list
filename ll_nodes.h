@@ -11,6 +11,8 @@ Node* create_linked_list(int);
 
 void ll_append(Node*, int);
 
-void print_list(Node* head_ptr);
+void ll_append_beginning(Node*, int);
+
+void print_list(Node*);
 
 #endif
