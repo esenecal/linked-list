@@ -21,7 +21,8 @@ Node* create_linked_list(int value) {
     // Test to ensure allocation was successful.
     if (node == NULL) {
         printf("Memory allocation unsuccessful.\n");
-        return node;
+        free(node);
+        return NULL;
     }
     
     node->value = value;    // Assign values to the struct.
@@ -40,6 +41,7 @@ void ll_append(Node* head_ptr, int value) {     // Append to the end of the list
     // Test to ensure allocation was successful.
     if (node == NULL) {
         printf("Memory allocation unsuccessful.\n");
+        free(node);
         return;
     }
 
@@ -53,33 +55,36 @@ void ll_append(Node* head_ptr, int value) {     // Append to the end of the list
     printf("address: %p ptr: %p tail: %p value: %d\n",  node, node->ptr, node->tail, node->value);   // Debugging
 }
 
-void ll_append_beginning(Node* head_ptr, int value) {       // Append at the beginning of the list.
+// Append a node at the beginning of a list. Returns the new head pointer.
+Node* ll_append_beginning(Node* head_ptr, int value) {
     
-    Node *node;
+    Node *node;     // new node.
     node = malloc(sizeof(*node));   // Allocate to dynamic memory.
     
     // Test to ensure allocation was successful.
     if (node == NULL) {
         printf("Memory allocation unsuccessful.\n");
-        return;
+        free(node);     // clear memory?
+        return head_ptr;    // Just return the original head pointer.
     }
 
     node->value = value;
-    node->ptr = head_ptr;   // replaces the head_ptr
+    node->ptr = head_ptr;   // replaces the head_ptr by pointing to the head_ptr.
     node->tail = head_ptr->tail;
-    head_ptr->tail = NULL;  // The current head_ptr no longer needs a tail.
 
-    head_ptr = node;    // point the head_ptr to the new node.
+    head_ptr->tail = NULL;
 
     printf("address: %p ptr: %p tail: %p value: %d\n",  node, node->ptr, node->tail, node->value);   // Debugging
+
+    return node;        // this is the new head pointer.
 }
 
 void print_list(Node* head_ptr) {   // Print the linked list.
     Node *iter = head_ptr;  // Create a pointer pointing to the head pointer.
     while (iter->ptr != NULL) {     // Iterate up to the tail
-        printf("%d -> ", iter->value);
+        printf("%d;%p -> ", iter->value, iter->tail);
         iter = iter->ptr;           // Move to the next node.
     }
     // print the tail.
-    printf("%d -> NULL\n", iter->value);
+    printf("%d;%p -> NULL\n", iter->value, iter->tail);
 }

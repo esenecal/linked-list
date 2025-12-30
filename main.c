@@ -6,10 +6,9 @@ int main() {
     
     // Create the linked list as the head pointer.
     Node* head_ptr = create_linked_list(2);
-    ll_append_beginning(head_ptr, 20);
+    head_ptr = ll_append_beginning(head_ptr, 20);
     print_list(head_ptr);
-    print_list(head_ptr);
-    printf("%p", head_ptr);
+    // printf("%p", head_ptr->tail);
 
     return 0;
 }
