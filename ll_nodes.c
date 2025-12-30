@@ -82,9 +82,23 @@ Node* ll_append_beginning(Node* head_ptr, int value) {
 void print_list(Node* head_ptr) {   // Print the linked list.
     Node *iter = head_ptr;  // Create a pointer pointing to the head pointer.
     while (iter->ptr != NULL) {     // Iterate up to the tail
-        printf("%d;%p -> ", iter->value, iter->tail);
+        printf("%d -> ", iter->value);
         iter = iter->ptr;           // Move to the next node.
     }
     // print the tail.
-    printf("%d;%p -> NULL\n", iter->value, iter->tail);
+    printf("%d -> NULL\n", iter->value);
+}
+
+void delete_list(Node* head_ptr) {      // Deallocate all memory used in the linked list.
+    Node *node = head_ptr;  // Create a pointer pointing to the head pointer.
+    Node *next = head_ptr->ptr;
+    while (next != NULL) {     // Iterate up to the tail
+        printf("Clearing %d\n", node->value);
+        free(node);
+        node = next;
+        next = node->ptr;
+    }
+    // clear the last node.
+    printf("Clearing %d\n", node->value);
+        free(node);
 }

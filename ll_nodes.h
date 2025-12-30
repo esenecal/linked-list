@@ -14,5 +14,6 @@ void ll_append(Node*, int);
 Node* ll_append_beginning(Node*, int);
 
 void print_list(Node*);
+void delete_list(Node*);
 
 #endif

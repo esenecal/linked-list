@@ -5,10 +5,12 @@
 int main() {
     
     // Create the linked list as the head pointer.
-    Node* head_ptr = create_linked_list(2);
-    head_ptr = ll_append_beginning(head_ptr, 20);
+    Node* head_ptr = create_linked_list(1);
+    for(int i = 2; i < 5; i++){
+        ll_append(head_ptr, i);
+    }
     print_list(head_ptr);
-    // printf("%p", head_ptr->tail);
+    delete_list(head_ptr);
 
     return 0;
 }
