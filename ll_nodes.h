@@ -6,5 +6,5 @@ typedef struct Node {
     struct Node *ptr;
 } Node;
 
-Node* create_pointer(int, Node*);
+Node* create_linked_list(int);
 #endif

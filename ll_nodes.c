@@ -10,17 +10,22 @@ typedef struct Node {
     Node *ptr;  // Pointer to next node.
 } Node;
 
-// Create a pointer.
-Node* create_pointer(int value, Node* ptr) {
+// Create the first node of a linked list and thus initialize the list. Automatically set the value of the linked list to null.
+Node* create_linked_list(int value) {
+
     Node *node;
-    node = malloc(sizeof(*node));
+    node = malloc(sizeof(*node));   // Allocate to dynamic memory.
+    
     // Test to ensure allocation was successful.
     if (node == NULL) {
         printf("Memory allocation unsuccessful.\n");
         return node;
     }
-    node->value = value;
-    node->ptr = ptr;
-    printf("Node: value: %d ptr %p\n", node->value, node->ptr);
+    
+    node->value = value;    // Assign values to the struct.
+    node->ptr = NULL;
+    
+    printf("address: %p value: %d ptr %p\n", node, node->value, node->ptr);   // Debugging
     return node;
 }
+

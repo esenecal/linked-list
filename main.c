@@ -3,6 +3,9 @@
 #include <stdlib.h>
 
 int main() {
-    Node* node1 = create_pointer(2, NULL);
+    
+    // Create the linked list.
+    Node* linked_list = create_linked_list(2);
+
     return 0;
 }
