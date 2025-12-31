@@ -79,14 +79,39 @@ Node* ll_append_beginning(Node* head_ptr, int value) {
     return node;        // this is the new head pointer.
 }
 
+Node* delete_node(Node* head_ptr, int position) {       // delete a node at a specific position, with 0 being the first node.
+    Node *prev; // Node before the current node.
+    Node *node = head_ptr;
+    for (int i = 0; i < position; i++) {    // Iterate up to the proper node
+        if (node == NULL) {     // check to ensure we have not gone over the limit.
+            printf("Over limit length.\n");
+            return head_ptr;
+        }
+        printf("Node %d: %d\n", position, node->value);
+        prev = node;
+        node = node->ptr;
+    }
+    // We have reached the position to be deleted.
+    if (position == 0) {        // If the pointer being deleted is the head pointer:
+        node = head_ptr->ptr;           // make node the new head pointer--start pointing over info.
+        node->tail = head_ptr->tail;
+        free(head_ptr);                     // deallocate memory
+        return node;                        // return the new head node (prev)      
+    } else {  
+        prev->ptr = node->ptr;  // Point the previous node to the node after the node being deleted.
+        free(node);
+        return head_ptr;        // return the head pointer.
+    }
+}
+
 void print_list(Node* head_ptr) {   // Print the linked list.
     Node *iter = head_ptr;  // Create a pointer pointing to the head pointer.
     while (iter->ptr != NULL) {     // Iterate up to the tail
-        printf("%d -> ", iter->value);
+        printf("Value: %d tail: %p -> ", iter->value, iter->tail);
         iter = iter->ptr;           // Move to the next node.
     }
     // print the tail.
-    printf("%d -> NULL\n", iter->value);
+    printf("Value: %d tail: %p -> NULL\n", iter->value, iter->tail);
 }
 
 void delete_list(Node* head_ptr) {      // Deallocate all memory used in the linked list.

@@ -10,6 +10,11 @@ int main() {
         ll_append(head_ptr, i);
     }
     print_list(head_ptr);
+    // delete the node
+    head_ptr = delete_node(head_ptr, 4);
+    print_list(head_ptr);
+
+    // test to ensure the remaining list is intact.
     delete_list(head_ptr);
 
     return 0;
