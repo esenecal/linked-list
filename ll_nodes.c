@@ -70,16 +70,44 @@ Node* ll_append_beginning(Node* head_ptr, int value) {
 
     node->value = value;
     node->ptr = head_ptr;   // replaces the head_ptr by pointing to the head_ptr.
-    node->tail = head_ptr->tail;
-
-    head_ptr->tail = NULL;
+    node->tail = head_ptr->tail;    // unfortunately, now we have two pointers with a tail value.
 
     printf("address: %p ptr: %p tail: %p value: %d\n",  node, node->ptr, node->tail, node->value);   // Debugging
 
     return node;        // this is the new head pointer.
 }
 
-// add_middle()
+// add a node anywhere in the list at a specific position. This will place a node at that position and shift nodes after it.
+Node* add_node(Node* head_ptr, int value, int position) {
+    if (position == 0) {
+        Node *node = ll_append_beginning(head_ptr, value);
+        return node;
+    } else {
+         Node* node = head_ptr;
+    Node* new_node;
+    new_node = malloc(sizeof(*new_node));   // allocate to dynamic memory.
+
+    for (int i = 0; i < position-1; i++) {
+        node = node->ptr;
+        if (node == NULL) {
+            printf("Over limit length.\n");
+            return 0;
+        } 
+        else if (node->ptr == NULL) {     // last node in the list, so thus new_node will be the new last node.
+            head_ptr->tail = new_node;
+        }
+    }
+    // node now points to the before the one we will replace.
+
+    new_node->value = value;
+    new_node->ptr = node->ptr;      // point the new_node to the node after node.
+    node->ptr = new_node;           // point the prev node to the new node.
+    new_node->tail = NULL;
+
+    return head_ptr;
+    }
+   
+}
 
 // get the value stored by a node at a specific position, starting at 0.
 int get_node_value(Node* head_ptr, int position) {
