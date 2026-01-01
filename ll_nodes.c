@@ -79,6 +79,21 @@ Node* ll_append_beginning(Node* head_ptr, int value) {
     return node;        // this is the new head pointer.
 }
 
+// add_middle()
+
+// get the value stored by a node at a specific position, starting at 0.
+int get_node_value(Node* head_ptr, int position) {
+    Node* node = head_ptr;
+    for (int i = 0; i < position; i++) {
+        node = node->ptr;
+        if (node == NULL) {
+            printf("Over limit length.\n");
+            return 0;
+        }
+    }
+    return node->value;
+}
+
 Node* delete_node(Node* head_ptr, int position) {       // delete a node at a specific position, with 0 being the first node.
     Node *prev; // Node before the current node.
     Node *node = head_ptr;

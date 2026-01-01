@@ -10,8 +10,9 @@ typedef struct Node {
 Node* create_linked_list(int);
 
 void ll_append(Node*, int);
-
 Node* ll_append_beginning(Node*, int);
+int get_node_value(Node*, int);
+
 Node* delete_node(Node*, int);
 
 void print_list(Node*);
