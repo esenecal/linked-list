@@ -10,6 +10,11 @@ int main() {
         ll_append(head_ptr, i);
     }
     print_list(head_ptr);
+    head_ptr = add_node(head_ptr, 200, 0);
+    print_list(head_ptr);
+    ll_append(head_ptr, 300);
+    print_list(head_ptr);
+
     delete_list(head_ptr);
 
     return 0;
