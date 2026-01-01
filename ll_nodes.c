@@ -83,18 +83,17 @@ Node* delete_node(Node* head_ptr, int position) {       // delete a node at a sp
     Node *prev; // Node before the current node.
     Node *node = head_ptr;
     for (int i = 0; i < position; i++) {    // Iterate up to the proper node
+        printf("Node %d: %d\n", position, node->value);
+        prev = node;
+        node = node->ptr;
         if (node == NULL) {     // check to ensure we have not gone over the limit.
             printf("Over limit length.\n");
             return head_ptr;
         }
-        printf("Node %d: %d\n", position, node->value);
-        prev = node;
-        node = node->ptr;
     }
     // We have reached the position to be deleted.
     if (position == 0) {        // If the pointer being deleted is the head pointer:
         node = head_ptr->ptr;           // make node the new head pointer--start pointing over info.
-        node->tail = head_ptr->tail;
         free(head_ptr);                     // deallocate memory
         return node;                        // return the new head node (prev)      
     } else {  
